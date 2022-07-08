@@ -63,7 +63,13 @@ export const userRegisterAsync = createAsyncThunk(
 export const userSlice = createSlice({
 	name: "user",
 	initialState,
-	reducers: {},
+	reducers: {
+		logout: (state) => {
+			state.isLoggedIn = false;
+			state.jwt = "";
+			state.user = {};
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(userLoginAsync.pending, (state) => {
@@ -89,7 +95,7 @@ export const userSlice = createSlice({
 	},
 });
 
-export const {} = userSlice.actions;
+export const { logout } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user;
 
