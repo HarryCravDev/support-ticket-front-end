@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../app/store";
 import axios from "axios";
+import IRegisterFormValues from "../types/IRegisterValues";
 
 interface IUserState {
 	user: any;
@@ -29,6 +30,28 @@ export const userLoginAsync = createAsyncThunk(
 				}
 			);
 			console.log("fetchFeedbackAsync", { data });
+			return data.data;
+		} catch (error) {
+			console.error(error);
+			return error;
+		}
+	}
+);
+
+export const userRegisterAsync = createAsyncThunk(
+	"user/register",
+	async ({ email, name, password, confirmPassword }: IRegisterFormValues) => {
+		try {
+			const { data } = await axios.post(
+				"http://localhost:4500/v1/api/users/register",
+				{
+					email,
+					name,
+					password,
+					confirmPassword,
+				}
+			);
+			console.log("register user: ", { data });
 			return data.data;
 		} catch (error) {
 			console.error(error);
