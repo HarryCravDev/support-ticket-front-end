@@ -5,10 +5,11 @@ const Header = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div>
+		<div style={{ height: "9vh" }}>
 			<PageHeader
 				className="site-page-header"
 				title="Support Ticket System"
+				style={{ backgroundColor: "#f0f0f0" }}
 				extra={[
 					<Button onClick={() => navigate("login")} key="1" type="primary">
 						Login
