@@ -63,25 +63,39 @@ export const userRegisterAsync = createAsyncThunk(
 export const userSlice = createSlice({
 	name: "user",
 	initialState,
-	reducers: {},
+	reducers: {
+		logout: (state) => {
+			state.isLoggedIn = false;
+			state.jwt = "";
+			state.user = {};
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(userLoginAsync.pending, (state) => {
-				console.log("Loading feedback from server");
 				state.status = "loading";
 			})
 			.addCase(userLoginAsync.fulfilled, (state, action) => {
-				console.log("Got feedback from server", action.payload);
-				const { _id, email, name, token } = action.payload;
+				const { _id, email, name } = action.payload.user;
 				state.status = "idle";
 				state.user = { email, name, _id };
 				state.isLoggedIn = true;
-				state.jwt = token;
+				state.jwt = action.payload.token;
+			})
+			.addCase(userRegisterAsync.pending, (state) => {
+				state.status = "loading";
+			})
+			.addCase(userRegisterAsync.fulfilled, (state, action) => {
+				const { _id, email, name } = action.payload.user;
+				state.status = "idle";
+				state.user = { email, name, _id };
+				state.isLoggedIn = true;
+				state.jwt = action.payload.token;
 			});
 	},
 });
 
-export const {} = userSlice.actions;
+export const { logout } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user;
 
