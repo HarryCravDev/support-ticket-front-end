@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Home from "./screens/home-screen/Home";
+import Login from "./screens/login-screen/Login";
+import Register from "./screens/register-screen/Register";
 import Header from "./components/header/Header";
 import Drawer from "./components/drawer/Drawer";
 
@@ -11,7 +11,6 @@ function App() {
 		<>
 			<Router>
 				<Header />
-				<Drawer />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
