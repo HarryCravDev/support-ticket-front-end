@@ -1,0 +1,12 @@
+.login-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.login-title {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
