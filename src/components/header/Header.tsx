@@ -2,6 +2,11 @@ import { PageHeader, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUser, logout } from "../../slices/userSlices";
+import {
+	LogoutOutlined,
+	LoginOutlined,
+	UserAddOutlined,
+} from "@ant-design/icons";
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -23,6 +28,7 @@ const Header = () => {
 					!isLoggedIn ? (
 						[
 							<Button onClick={() => navigate("login")} key="1" type="primary">
+								<LoginOutlined />
 								Login
 							</Button>,
 							<Button
@@ -30,11 +36,13 @@ const Header = () => {
 								key="2"
 								type="primary"
 							>
+								<UserAddOutlined />
 								Register
 							</Button>,
 						]
 					) : (
 						<Button onClick={handleLogout} key="1" type="primary">
+							<LogoutOutlined />
 							Logout
 						</Button>
 					)
