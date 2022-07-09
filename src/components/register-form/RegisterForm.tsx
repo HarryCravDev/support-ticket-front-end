@@ -32,8 +32,6 @@ const RegisterForm: React.FC = () => {
 			userRegisterAsync({ email, name, password, confirmPassword })
 		);
 
-		console.log("Harry Crave: ", res);
-
 		if (res.payload.user) {
 			navigate("/");
 		} else {

@@ -12,9 +12,7 @@ const LoginForm: React.FC = () => {
 	const [alertMessage, setAlertMessage] = useState("");
 
 	const onFinish = async (values: { email: string; password: string }) => {
-		console.log("Success:", values);
 		const res = await dispatch(userLoginAsync(values));
-		console.log("Harry Crave: ", res);
 
 		if (res.payload.user) {
 			navigate("/");
