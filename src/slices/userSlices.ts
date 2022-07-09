@@ -51,7 +51,7 @@ export const userRegisterAsync = createAsyncThunk(
 					confirmPassword,
 				}
 			);
-			console.log("register user: ", { data });
+
 			return data.data;
 		} catch (error) {
 			console.error(error);
@@ -68,6 +68,12 @@ export const userSlice = createSlice({
 			state.isLoggedIn = false;
 			state.jwt = "";
 			state.user = {};
+		},
+		reset: (state) => {
+			state.isLoggedIn = false;
+			state.jwt = "";
+			state.user = {};
+			state.status = "idle";
 		},
 	},
 	extraReducers: (builder) => {
