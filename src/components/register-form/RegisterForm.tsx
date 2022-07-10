@@ -33,7 +33,7 @@ const RegisterForm: React.FC = () => {
 		);
 
 		if (res.payload.user) {
-			navigate("/");
+			navigate("/ticket-menu");
 		} else {
 			setShowAlert(true);
 			setAlertMessage(res.payload.response.data.message);
@@ -110,8 +110,8 @@ const RegisterForm: React.FC = () => {
 					<Input.Password />
 				</Form.Item>
 
-				<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-					<Button type="primary" htmlType="submit">
+				<Form.Item>
+					<Button type="primary" htmlType="submit" style={{ width: "100%" }}>
 						Submit
 					</Button>
 				</Form.Item>

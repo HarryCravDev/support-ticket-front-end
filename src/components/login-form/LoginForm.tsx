@@ -15,7 +15,7 @@ const LoginForm: React.FC = () => {
 		const res = await dispatch(userLoginAsync(values));
 
 		if (res.payload.user) {
-			navigate("/");
+			navigate("/ticket-menu");
 		} else {
 			setShowAlert(true);
 			setAlertMessage(res.payload.response.data.message);
@@ -84,8 +84,9 @@ const LoginForm: React.FC = () => {
 				<Checkbox>Remember me</Checkbox>
 			</Form.Item> */}
 
-				<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-					<Button type="primary" htmlType="submit">
+				{/* <Form.Item wrapperCol={{ offset: 8, span: 16 }}> */}
+				<Form.Item>
+					<Button type="primary" htmlType="submit" style={{ width: "100%" }}>
 						Submit
 					</Button>
 				</Form.Item>
