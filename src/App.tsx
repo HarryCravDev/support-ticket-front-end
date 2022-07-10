@@ -5,6 +5,7 @@ import Login from "./screens/login-screen/Login";
 import Register from "./screens/register-screen/Register";
 import Header from "./components/header/Header";
 import Drawer from "./components/drawer/Drawer";
+import TicketMenu from "./screens/ticket-menu-screen/TicketMenu";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/ticket-menu" element={<TicketMenu />} />
 				</Routes>
 			</Router>
 		</>
