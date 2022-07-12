@@ -1,7 +1,7 @@
 import { Button, Checkbox, Form, Input, Alert } from "antd";
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { userRegisterAsync, selectUser } from "../../slices/userSlices";
+import { userRegisterAsync, selectUser } from "../../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import IRegisterFormValues from "../../types/IRegisterValues";
 

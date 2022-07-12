@@ -1,7 +1,7 @@
 import { PageHeader, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { selectUser, logout } from "../../slices/userSlices";
+import { selectUser, logout } from "../../slices/userSlice";
 import {
 	LogoutOutlined,
 	LoginOutlined,
