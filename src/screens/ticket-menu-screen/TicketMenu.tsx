@@ -1,9 +1,12 @@
 import { Button, Typography } from "antd";
 import React from "react";
 import { QuestionCircleOutlined, FileDoneOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import "./ticketMenu.css";
 
 const TicketMenu = () => {
+	const navigate = useNavigate();
+
 	return (
 		<section className="ticket-menu-container">
 			<Typography.Title
@@ -16,7 +19,12 @@ const TicketMenu = () => {
 				Please choose from an option below
 			</Typography.Paragraph>
 			<div>
-				<Button type="primary" size="large" style={{ marginRight: "1rem" }}>
+				<Button
+					onClick={() => navigate("/new-ticket")}
+					type="primary"
+					size="large"
+					style={{ marginRight: "1rem" }}
+				>
 					<QuestionCircleOutlined />
 					Create New Ticket
 				</Button>
