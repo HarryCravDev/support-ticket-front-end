@@ -1,0 +1,9 @@
+.new-ticket-form-container {
+	width: 500px;
+}
+
+@media (max-width: 480px) {
+	.new-ticket-form-container {
+		width: 90vw;
+	}
+}

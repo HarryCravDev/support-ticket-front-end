@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userLoginAsync, selectUser } from "../../slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import "./loginForm.css";
 
 const LoginForm: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -42,14 +43,13 @@ const LoginForm: React.FC = () => {
 			)}
 			<Form
 				name="basic"
-				// labelCol={{ span: 8 }}
-				// wrapperCol={{ span: 16 }}
 				initialValues={{ remember: true }}
 				onFinish={onFinish}
 				onFinishFailed={onFinishFailed}
 				autoComplete="off"
-				style={{ width: "500px" }}
+				// style={{ width: "500px" }}
 				layout="vertical"
+				className="login-form-container"
 			>
 				<Form.Item
 					name="email"
