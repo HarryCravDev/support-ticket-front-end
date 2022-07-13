@@ -1,0 +1,16 @@
+.display-tickets-container {
+	min-height: 91vh;
+	position: relative;
+}
+
+.display-tickets-title {
+	margin: 1.2rem 0 0 0 !important;
+	text-align: center;
+}
+
+.display-tickets-subtitle {
+	margin: 0 0 1rem 0 !important;
+	font-size: 1.2rem;
+	text-align: center;
+	opacity: 0.5;
+}
