@@ -1,0 +1,9 @@
+.register-form-container {
+	width: 500px;
+}
+
+@media (max-width: 480px) {
+	.register-form-container {
+		width: 90vw;
+	}
+}

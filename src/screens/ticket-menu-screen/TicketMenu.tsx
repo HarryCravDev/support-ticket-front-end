@@ -9,13 +9,10 @@ const TicketMenu = () => {
 
 	return (
 		<section className="ticket-menu-container">
-			<Typography.Title
-				level={2}
-				style={{ marginBottom: "0", fontSize: "2rem" }}
-			>
+			<Typography.Title level={2} className="ticket-menu-title">
 				What do you need help with?
 			</Typography.Title>
-			<Typography.Paragraph style={{ opacity: 0.5, fontSize: "1.5rem" }}>
+			<Typography.Paragraph className="ticket-menu-para">
 				Please choose from an option below
 			</Typography.Paragraph>
 			<div>
@@ -23,12 +20,19 @@ const TicketMenu = () => {
 					onClick={() => navigate("/new-ticket")}
 					type="primary"
 					size="large"
-					style={{ marginRight: "1rem" }}
+					className="create-ticket-btn"
+					// style={{ marginRight: "1rem" }}
 				>
 					<QuestionCircleOutlined />
 					Create New Ticket
 				</Button>
-				<Button type="primary" size="large" style={{ marginRight: "1rem" }}>
+				<Button
+					onClick={() => navigate("/tickets")}
+					type="primary"
+					size="large"
+					className="view-ticket-btn"
+					// style={{ marginRight: "1rem" }}
+				>
 					<FileDoneOutlined />
 					View My Tickets
 				</Button>

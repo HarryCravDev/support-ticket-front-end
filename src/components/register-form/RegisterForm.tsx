@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userRegisterAsync, selectUser } from "../../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import IRegisterFormValues from "../../types/IRegisterValues";
+import "./registerForm.css";
 
 const RegisterForm: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -60,13 +61,12 @@ const RegisterForm: React.FC = () => {
 			)}
 			<Form
 				name="basic"
-				// labelCol={{ span: 8 }}
-				// wrapperCol={{ span: 16 }}
 				initialValues={{ remember: true }}
 				onFinish={onFinish}
 				onFinishFailed={onFinishFailed}
 				autoComplete="off"
-				style={{ width: "500px" }}
+				// style={{ width: "500px" }}
+				className="register-form-container"
 				layout="vertical"
 			>
 				<Form.Item
