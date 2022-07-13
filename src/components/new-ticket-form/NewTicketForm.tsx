@@ -6,6 +6,7 @@ import { createTicketAsync } from "../../slices/ticketingSlice";
 import { useNavigate } from "react-router-dom";
 import TextArea, { TextAreaRef } from "antd/lib/input/TextArea";
 import ICreateTicket from "../../types/ICreateTicket";
+import "./newTicketForm.css";
 
 const NewTicketForm = () => {
 	const dispatch = useAppDispatch();
@@ -64,8 +65,9 @@ const NewTicketForm = () => {
 				onFinish={onFinish}
 				onFinishFailed={onFinishFailed}
 				autoComplete="off"
-				style={{ width: "500px" }}
+				// style={{ width: "500px" }}
 				layout="vertical"
+				className="new-ticket-form-container"
 			>
 				<Form.Item initialValue={user.name} label="Customer Name" name="name">
 					<Input value={user.name} disabled />
@@ -86,7 +88,8 @@ const NewTicketForm = () => {
 					rules={[{ required: true, message: "Please select a product!" }]}
 				>
 					<Select style={{ width: "100%" }}>
-						{["Macbook Pro", "Macbook Air", "iPhone", "iPad"].map(
+						{/* Todo: Request product data from the server instead of hardcode...   */}
+						{["MacBook Pro", "MacBook Air", "iPhone", "iPad"].map(
 							(product, index) => (
 								<Select.Option key={index} value={product}>
 									{product}
