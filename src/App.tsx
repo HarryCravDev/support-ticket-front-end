@@ -9,6 +9,7 @@ import TicketMenu from "./screens/ticket-menu-screen/TicketMenu";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import NewTicket from "./screens/new-ticket/NewTicket";
 import DisplayTickets from "./screens/display-tickets-screen/DisplayTickets";
+import Ticket from "./screens/ticket-screen/Ticket";
 
 function App() {
 	return (
@@ -25,6 +26,9 @@ function App() {
 					</Route>
 					<Route path="/tickets" element={<PrivateRoute />}>
 						<Route path="/tickets" element={<DisplayTickets />} />
+					</Route>
+					<Route path="/tickets/:ticketId" element={<PrivateRoute />}>
+						<Route path="/tickets/:ticketId" element={<Ticket />} />
 					</Route>
 				</Routes>
 			</Router>

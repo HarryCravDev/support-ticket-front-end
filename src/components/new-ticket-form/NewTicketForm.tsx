@@ -10,39 +10,47 @@ import "./newTicketForm.css";
 
 const NewTicketForm = () => {
 	const dispatch = useAppDispatch();
-	const { isLoggedIn, user } = useAppSelector(selectUser);
+	const { user } = useAppSelector(selectUser);
 	const navigate = useNavigate();
-	const [showAlert, setShowAlert] = useState(false);
-	const [alertMessage, setAlertMessage] = useState("");
-	const [selectInputChange, setSelectInputChange] = useState(false);
-	const textareaRef = useRef<TextAreaRef | null>(null);
-	console.log("data: ", user);
-	console.log("email: ", user.email);
+	const [alertData, setAlertData] = useState({
+		type: "success",
+		message: "",
+		show: false,
+	});
+	const [form] = Form.useForm();
 
-	// const onFinish = async ({ name, email, password, confirmPassword }: any) => {
 	const onFinish = async ({
 		name,
 		email,
 		product,
 		description,
 	}: ICreateTicket) => {
-		// Todo - dispatch action to create a new ticket
 		const res = await dispatch(
 			createTicketAsync({ userId: user._id, name, email, product, description })
 		);
-		// Todo - If successful, navigate to the ticket menu; maybe a show an alert?
-		// Todo - If unsuccessful, show an unsuccessful alert?
-		console.log("Component: ", res);
-		// if (res.payload.user) {
-		// 	navigate("/ticket-menu");
-		// } else {
-		// 	setShowAlert(true);
-		// 	setAlertMessage(res.payload.response.data.message);
-		// 	const timer = setTimeout(() => {
-		// 		setShowAlert(false);
-		// 		clearTimeout(timer);
-		// 	}, 3000);
-		// }
+
+		if (res.payload._id) {
+			form.resetFields();
+
+			setAlertData({
+				type: "success",
+				message: `Ticket created successfully, ${res.payload._id}`,
+				show: true,
+			});
+
+			// todo - timer too slow... needs improving
+			const timer = setTimeout(() => {
+				setAlertData((previous) => ({ ...previous, show: false }));
+				clearTimeout(timer);
+				navigate("/ticket-menu");
+			}, 1000);
+		} else {
+			setAlertData({
+				type: "error",
+				message: `Something went wrong, ticket not created. Error message: ${res.payload.response.data.message}`,
+				show: false,
+			});
+		}
 	};
 
 	const onFinishFailed = (errorInfo: any) => {
@@ -51,14 +59,30 @@ const NewTicketForm = () => {
 
 	return (
 		<div>
-			{showAlert && (
+			{alertData.show && (
+				<Alert
+					style={{ marginBottom: "1rem" }}
+					message={alertData.message}
+					// Todo - Create type for this
+					type={
+						alertData.type as
+							| "success"
+							| "info"
+							| "warning"
+							| "error"
+							| undefined
+					}
+					showIcon
+				/>
+			)}
+			{/* {showAlert && (
 				<Alert
 					style={{ marginBottom: "1rem" }}
 					message={alertMessage}
 					type="error"
 					showIcon
 				/>
-			)}
+			)} */}
 			<Form
 				name="basic"
 				initialValues={{ remember: true }}
@@ -68,6 +92,7 @@ const NewTicketForm = () => {
 				// style={{ width: "500px" }}
 				layout="vertical"
 				className="new-ticket-form-container"
+				form={form}
 			>
 				<Form.Item initialValue={user.name} label="Customer Name" name="name">
 					<Input value={user.name} disabled />

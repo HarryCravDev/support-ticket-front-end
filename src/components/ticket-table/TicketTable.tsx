@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import { Space, Table, Tag, Button, Spin } from "antd";
+import { useNavigate } from "react-router-dom";
 const { Column, ColumnGroup } = Table;
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getTicketsAsync, selectTicket } from "../../slices/ticketingSlice";
+import "./ticketTable.css";
 
 interface DataType {
+	_id: string;
 	key: React.Key;
 	createdAt: string;
 	product: string;
@@ -13,6 +16,7 @@ interface DataType {
 
 const TicketTable = () => {
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const { status, tickets } = useAppSelector(selectTicket);
 
 	useEffect(() => {
@@ -36,16 +40,18 @@ const TicketTable = () => {
 				title="Status"
 				dataIndex="status"
 				key="status"
+				className="status-column"
 				render={(status: string) => (
 					<Tag
 						color={
 							status === "open"
-								? "blue"
+								? "green"
 								: status === "in progress"
-								? "red"
-								: "green"
+								? "blue"
+								: "red"
 						}
 						key={status}
+						className="status-tag"
 					>
 						{status}
 					</Tag>
@@ -55,7 +61,12 @@ const TicketTable = () => {
 				title="Action"
 				key="action"
 				render={(_: any, ticket: DataType) => (
-					<Button type="primary">View</Button>
+					<Button
+						type="primary"
+						onClick={() => navigate(`/tickets/${ticket._id}`)}
+					>
+						View
+					</Button>
 				)}
 			/>
 		</Table>

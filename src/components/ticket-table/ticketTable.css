@@ -1,0 +1,9 @@
+.status-column {
+	text-align: center;
+}
+
+.status-tag {
+	min-width: 75%;
+	text-align: center;
+	font-size: 0.9rem;
+}
