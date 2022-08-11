@@ -17,34 +17,49 @@ const initialState: ICommentState = {
 	message: "",
 };
 
-// export const getCommentsAsync = createAsyncThunk(
-// 	"ticket/create",
-// 	async () => {
-// 		console.log("Params: ");
-// 		console.log("Authorization: ", localStorage.getItem("jwt"));
+interface INoteComment {
+	userId: string;
+	ticketId: string;
+	comment: string;
+	isStaff?: boolean;
+	staff?: string;
+}
 
-// 		try {
-// 			const { data } = await axios.post(
-// 				"http://localhost:4500/v1/api/ticket",
-// 				{
+export const createCommentAsync = createAsyncThunk(
+	"comments/create",
+	// async ({ tickedId }: { tickedId: string,  }) => {
+	async ({ ticketId, userId, comment }: INoteComment) => {
+		console.log("Params: createCommentAsync ", {
+			ticketId,
+			userId,
+			comment,
+		});
+		console.log("Authorization: ", localStorage.getItem("jwt"));
 
-// 				},
-// 				{
-// 					headers: {
-// 						Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-// 					},
-// 				}
-// 			);
+		try {
+			const { data } = await axios.post(
+				`http://${import.meta.env.VITE_IP}:4500/v1/api/notes/${ticketId}`,
+				{
+					ticketId,
+					userId,
+					comment,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+					},
+				}
+			);
 
-// 			console.log("Return from createTicketAsync", { data });
+			console.log("Return from createCommentAsync", { data });
 
-// 			return data.data;
-// 		} catch (error) {
-// 			console.error(error);
-// 			return error;
-// 		}
-// 	}
-// );
+			return data.data;
+		} catch (error) {
+			console.error(error);
+			return error;
+		}
+	}
+);
 
 export const getCommentsAsync = createAsyncThunk(
 	"comments/get",
@@ -58,7 +73,9 @@ export const getCommentsAsync = createAsyncThunk(
 
 		try {
 			const { data } = await axios.get(
-				`http://localhost:4500/v1/api/notes/${userId}/${ticketId}`,
+				`http://${
+					import.meta.env.VITE_IP
+				}:4500/v1/api/notes/${userId}/${ticketId}`,
 				{
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -92,6 +109,14 @@ export const ticketSlice = createSlice({
 			})
 			.addCase(getCommentsAsync.fulfilled, (state, action) => {
 				console.log("Return payload from getCommentsAsync", { action });
+				state.comments = action.payload;
+				state.status = "idle";
+			})
+			.addCase(createCommentAsync.pending, (state) => {
+				state.status = "loading";
+			})
+			.addCase(createCommentAsync.fulfilled, (state, action) => {
+				console.log("Return payload from createCommentAsync", { action });
 				state.comments = action.payload;
 				state.status = "idle";
 			});

@@ -1,26 +1,22 @@
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectUser } from "../../slices/userSlice";
+import React from "react";
+import IComment from "../../types/IComment";
 import TicketComment from "../ticket-comment/TicketComment";
-import { getCommentsAsync, selectComments } from "../../slices/commentSlice";
-import { selectTicket } from "../../slices/ticketingSlice";
 
-const TicketCommentContainer = () => {
-	const { comments, isError, status } = useAppSelector(selectComments);
-	const { user } = useAppSelector(selectUser);
-	const { ticket } = useAppSelector(selectTicket);
 
-	const dispatch = useAppDispatch();
-
-	useEffect(() => {
-		dispatch(getCommentsAsync({ userId: user._id, ticketId: ticket._id }));
-	}, []);
-
+const TicketCommentContainer: React.FC<{ comments: IComment[] }> = ({
+	comments = [],
+}) => {
 	return (
 		<div>
 			{comments.length > 0 &&
 				comments?.map((comment, index) => (
-					<TicketComment key={index} author="Harry" comment={comment.comment} />
+					<TicketComment
+						key={index}
+						author={comment.username}
+						comment={comment.comment}
+						datetime={comment.createdAt}
+						avatar={`https://joeschmoe.io/api/v1/${comment.username}`}
+					/>
 				))}
 		</div>
 	);

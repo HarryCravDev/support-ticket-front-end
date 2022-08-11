@@ -5,7 +5,8 @@ const TicketComment: React.FC<{
 	author: string;
 	avatar?: string;
 	comment: string;
-}> = ({ author = "No username", avatar, comment }) => {
+	datetime: string;
+}> = ({ author = "No username", avatar, comment, datetime }) => {
 	return (
 		<div>
 			<Comment
@@ -17,6 +18,7 @@ const TicketComment: React.FC<{
 					/>
 				}
 				content={<p>{comment}</p>}
+				datetime={new Date(datetime).toLocaleString()}
 			/>
 		</div>
 	);

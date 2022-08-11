@@ -1,0 +1,6 @@
+.comment-input-error {
+	border-color: #ff4d4f !important;
+	box-shadow: rgba(255, 66, 24, 0.2) 0px 0px 0px 2px !important;
+	border-right-width: 1px;
+	outline: 0px;
+}

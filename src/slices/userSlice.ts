@@ -23,7 +23,7 @@ export const userLoginAsync = createAsyncThunk(
 		console.log("User Parameters: ", { email, password });
 		try {
 			const { data } = await axios.post(
-				"http://localhost:4500/v1/api/users/login",
+				`http://${import.meta.env.VITE_IP}:4500/v1/api/users/login`,
 				{
 					email,
 					password,
@@ -43,7 +43,7 @@ export const userRegisterAsync = createAsyncThunk(
 	async ({ email, name, password, confirmPassword }: IRegisterFormValues) => {
 		try {
 			const { data } = await axios.post(
-				"http://localhost:4500/v1/api/users/register",
+				`http://${import.meta.env.VITE_IP}:4500/v1/api/users/register`,
 				{
 					email,
 					name,
