@@ -29,7 +29,7 @@ export const createTicketAsync = createAsyncThunk(
 		console.log("Authorization: ", localStorage.getItem("jwt"));
 		try {
 			const { data } = await axios.post(
-				"http://localhost:4500/v1/api/ticket",
+				`http://${import.meta.env.VITE_IP}:4500/v1/api/ticket`,
 				{
 					userId,
 					email,
@@ -58,12 +58,16 @@ export const getTicketsAsync = createAsyncThunk(
 	"ticket/getTickets",
 	async () => {
 		console.log("Authorization: ", localStorage.getItem("jwt"));
+
 		try {
-			const { data } = await axios.get("http://localhost:4500/v1/api/ticket", {
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-				},
-			});
+			const { data } = await axios.get(
+				`http://${import.meta.env.VITE_IP}:4500/v1/api/ticket`,
+				{
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+					},
+				}
+			);
 
 			console.log("Return from getTickets", { data });
 
@@ -81,7 +85,7 @@ export const getTicketAsync = createAsyncThunk(
 		console.log("Authorization: ", localStorage.getItem("jwt"));
 		try {
 			const { data } = await axios.get(
-				`http://localhost:4500/v1/api/ticket/${ticketId}`,
+				`http://${import.meta.env.VITE_IP}:4500/v1/api/ticket/${ticketId}`,
 				{
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -128,7 +132,9 @@ export const updateTicketAsync = createAsyncThunk(
 
 		try {
 			const { data } = await axios.put(
-				`http://localhost:4500/v1/api/ticket/${updateTicketData.ticketId}`,
+				`http://${import.meta.env.VITE_IP}:4500/v1/api/ticket/${
+					updateTicketData.ticketId
+				}`,
 				updateTicket,
 				{
 					headers: {
