@@ -1,0 +1,70 @@
+.ticket-page-container {
+	padding: 1rem;
+	position: relative;
+}
+
+.ticket-header-container {
+	/* margin-top: 2rem; */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1.7rem;
+}
+
+.ticket-title {
+	margin-bottom: 0;
+	font-size: 1.6rem;
+}
+
+.ticket-date-title {
+	margin-bottom: 0;
+	font-size: 1.6rem;
+}
+
+.ticket-product-title {
+	margin-bottom: 0;
+	font-size: 1.6rem;
+}
+
+.ticket-comment-title {
+	margin-top: 1rem;
+}
+
+.ticket-status-tag {
+	font-size: 1.6rem !important;
+	font-weight: bold;
+	line-height: center !important;
+	margin: 0 !important;
+	padding: 1rem !important;
+}
+
+.close-ticket-button {
+	margin-top: 1rem;
+}
+
+@media (max-width: 480px) {
+	.ticket-title {
+		font-size: 1.3rem !important;
+		margin-right: 0.5rem !important;
+	}
+	
+	.ticket-date-title {
+		font-size: 1.3rem !important;
+		margin-right: 0.5rem !important;
+	}
+	
+	.ticket-product-title {
+		font-size: 1.3rem !important;
+		margin-right: 0.5rem !important;
+	}
+
+	.ticket-header-container {
+		/* margin-top: 2rem; */
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 1.7rem;
+	}
+}
+
