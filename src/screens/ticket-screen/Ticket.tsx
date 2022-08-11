@@ -12,17 +12,20 @@ import BackButton from "../../components/back-button/BackButton";
 import TicketCommentContainer from "../../components/ticket-comment-container/TicketCommentContainer";
 import TicketCommentInput from "../../components/ticket-comment-input/TicketCommentInput";
 import "./ticket.css";
+import { getCommentsAsync, selectComments } from "../../slices/commentSlice";
 
 const Ticket = () => {
 	const { ticket, status, isError, isSuccess, message } =
 		useAppSelector(selectTicket);
 	const { user } = useAppSelector(selectUser);
+	const {
+		comments,
+		isError: commentIsError,
+		status: commentStatus,
+	} = useAppSelector(selectComments);
 	const dispatch = useAppDispatch();
 
 	const { ticketId } = useParams();
-	console.log("Params: ", ticketId);
-	console.log("Users: ", user);
-	console.log("Ticket: ", ticket);
 
 	useEffect(() => {
 		if (isError) {
@@ -32,6 +35,10 @@ const Ticket = () => {
 
 		dispatch(
 			getTicketAsync({ userId: user._id, ticketId: ticketId as string })
+		);
+
+		dispatch(
+			getCommentsAsync({ userId: user._id, ticketId: ticketId as string })
 		);
 	}, [isError, message, ticketId]);
 
@@ -85,7 +92,7 @@ const Ticket = () => {
 		<div className="ticket-page-container">
 			<BackButton url="/tickets" />
 			<div className="ticket-header-container">
-				<h1 className="ticket-title">Ticket ID: {ticketId}</h1>
+				<h1 className="ticket-title"><span style={{ fontWeight: "bold" }} >Ticket ID:</span> {ticketId}</h1>
 				<Tag
 					color={
 						ticket.status === "open"
@@ -101,9 +108,9 @@ const Ticket = () => {
 				</Tag>
 			</div>
 			<h1 className="ticket-date-title">
-				Date Submitted: {new Date(ticket.createdAt).toLocaleString("en-GB")}
+			<span style={{ fontWeight: "bold" }}>Date Submitted: </span>{new Date(ticket.createdAt).toLocaleString("en-GB")}
 			</h1>
-			<h1 className="ticket-product-title">Product: {ticket.product}</h1>
+			<h1 className="ticket-product-title"><span style={{ fontWeight: "bold" }}>Product:</span> {ticket.product}</h1>
 
 			<Divider />
 			<Card
@@ -114,7 +121,6 @@ const Ticket = () => {
 			>
 				{ticket.description}
 			</Card>
-			{/* // todo - create a reopen button, conditional display depending on ticket.status value  */}
 			{ticket.status === "open" || ticket.status === "in progress" ? (
 				<Button
 					type="primary"
@@ -135,9 +141,9 @@ const Ticket = () => {
 					Re-Open Ticket
 				</Button>
 			)}
-			<h1>Ticket Comments...</h1>
+			<h1 className="ticket-comment-title">Ticket Comments</h1>
 			<TicketCommentInput />
-			<TicketCommentContainer />
+			<TicketCommentContainer comments={comments} />
 		</div>
 	);
 };

@@ -26,6 +26,10 @@
 	font-size: 1.6rem;
 }
 
+.ticket-comment-title {
+	margin-top: 1rem;
+}
+
 .ticket-status-tag {
 	font-size: 1.6rem !important;
 	font-weight: bold;
@@ -43,4 +47,24 @@
 		font-size: 1.3rem !important;
 		margin-right: 0.5rem !important;
 	}
+	
+	.ticket-date-title {
+		font-size: 1.3rem !important;
+		margin-right: 0.5rem !important;
+	}
+	
+	.ticket-product-title {
+		font-size: 1.3rem !important;
+		margin-right: 0.5rem !important;
+	}
+
+	.ticket-header-container {
+		/* margin-top: 2rem; */
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 1.7rem;
+	}
 }
+
