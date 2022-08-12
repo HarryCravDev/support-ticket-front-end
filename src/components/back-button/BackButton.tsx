@@ -1,11 +1,15 @@
+import React from "react";
 import { RollbackOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 
-const BackButton = ({ url }: { url: string }) => {
+const BackButton = ({ url, customStyle }: { url: string, customStyle: React.CSSProperties | undefined }) => {
 	return (
 		<Button
-			style={{
+			style={customStyle ? 
+			customStyle
+			:
+			{
 				position: "absolute",
 				top: 0,
 				left: 0,
