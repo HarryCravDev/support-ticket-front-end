@@ -2,32 +2,43 @@
 	padding: 1rem;
 	position: relative;
 }
+.ticket-page-container span {
 
+	font-weight: bold;
+}
 .ticket-header-container {
-	/* margin-top: 2rem; */
+	margin-top: 2rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 1.7rem;
+	position: relative;
 }
 
 .ticket-title {
 	margin-bottom: 0;
-	font-size: 1.6rem;
+	font-size: 1.4rem;
+	position: absolute;
+	bottom: 0;
+	/* font-size: 1.6rem; */
 }
 
 .ticket-date-title {
 	margin-bottom: 0;
-	font-size: 1.6rem;
+	font-size: 1.4rem;
+	/* font-size: 1.6rem; */
 }
 
 .ticket-product-title {
 	margin-bottom: 0;
-	font-size: 1.6rem;
+	font-size: 1.4rem;
+	/* font-size: 1.6rem; */
 }
 
 .ticket-comment-title {
-	margin-top: 1rem;
+	margin-top: 2rem;
+	font-size: 1.4rem;
+	font-weight: bold;
 }
 
 .ticket-status-tag {
@@ -36,6 +47,9 @@
 	line-height: center !important;
 	margin: 0 !important;
 	padding: 1rem !important;
+	position: absolute !important;
+	bottom: 0;
+	right: 0;
 }
 
 .close-ticket-button {

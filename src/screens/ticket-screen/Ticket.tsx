@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Card, Divider, Spin, Tag, Button } from "antd";
+import { Card, Divider, Spin, Tag, Button, Typography } from "antd";
+const { Title } = Typography;
 import {
 	selectTicket,
 	getTicketAsync,
@@ -90,9 +91,11 @@ const Ticket = () => {
 
 	return (
 		<div className="ticket-page-container">
-			<BackButton url="/tickets" />
+			<BackButton url="/tickets" customStyle={{
+				marginBottom: "1.7rem"
+			}}  />
 			<div className="ticket-header-container">
-				<h1 className="ticket-title"><span style={{ fontWeight: "bold" }} >Ticket ID:</span> {ticketId}</h1>
+				<h1 className="ticket-title"><span>Ticket ID:</span> {ticketId}</h1>
 				<Tag
 					color={
 						ticket.status === "open"
@@ -108,16 +111,17 @@ const Ticket = () => {
 				</Tag>
 			</div>
 			<h1 className="ticket-date-title">
-			<span style={{ fontWeight: "bold" }}>Date Submitted: </span>{new Date(ticket.createdAt).toLocaleString("en-GB")}
+			<span>Date Submitted: </span>{new Date(ticket.createdAt).toLocaleString("en-GB")}
 			</h1>
-			<h1 className="ticket-product-title"><span style={{ fontWeight: "bold" }}>Product:</span> {ticket.product}</h1>
+			<h1 className="ticket-product-title"><span>Product:</span> {ticket.product}</h1>
 
 			<Divider />
 			<Card
-				title="Description of Issue"
+				// title="Description of Issue"
+				title={<Title level={3}>Description of Issue</Title>}
 				type="inner"
 				bordered={true}
-				style={{ width: "100%" }}
+				style={{ width: "100%", fontSize: "1rem" }}
 			>
 				{ticket.description}
 			</Card>
@@ -141,6 +145,7 @@ const Ticket = () => {
 					Re-Open Ticket
 				</Button>
 			)}
+
 			<h1 className="ticket-comment-title">Ticket Comments</h1>
 			<TicketCommentInput />
 			<TicketCommentContainer comments={comments} />
